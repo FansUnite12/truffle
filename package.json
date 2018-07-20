@@ -5,7 +5,8 @@
     "lerna:bootstrap": "lerna bootstrap",
     "bootstrap": "npm run lerna:bootstrap && npm run build:debugger",
     "test": "lerna run test --stream -- --colors",
-    "ci": "./scripts/ci.sh"
+    "ci": "./scripts/ci.sh",
+    "postinstall": "for dir in packages/[a-zA-Z0-9]* ; do printf \"=== Installing %s\\n\" \"$dir\" ; ( cd \"$dir\" ; npm install ; ) ; printf \"=== Installation exit code: %s for %s\\n\" $? \"$dir\" ; done "
   },
   "devDependencies": {
     "lerna": "^2.11.0"
